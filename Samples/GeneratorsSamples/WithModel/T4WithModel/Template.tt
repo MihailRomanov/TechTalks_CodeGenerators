@@ -1,0 +1,21 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="Model.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#@ parameter name="model" type="Model.MyModel" #>
+using System;
+using System.Text;
+
+namespace <#= model.Namespace #> {
+
+<#foreach(var type in model.Types)  {#>
+	public class <#= type.Name #> {
+	<#foreach(var prop in type.Properties)  {#>
+		public <#= prop.Type #> <#= prop.Name  #> { get; set; }
+	<#} #>
+	}
+<#} #>
+}

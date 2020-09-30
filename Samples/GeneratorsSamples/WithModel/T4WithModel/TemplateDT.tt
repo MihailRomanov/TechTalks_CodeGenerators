@@ -1,0 +1,22 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(ProjectDir)bin\Debug\netcoreapp3.1\Model.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+using System;
+using System.Text;
+
+<# Model.MyModel model = Model.ForGeneration.Model; #>
+
+namespace <#= model.Namespace #> {
+
+<#foreach(var type in model.Types)  {#>
+	public class <#= type.Name #> {
+	<#foreach(var prop in type.Properties)  {#>
+		public <#= prop.Type #> <#= prop.Name  #> { get; set; }
+	<#} #>
+	}
+<#} #>
+}

@@ -1,0 +1,11 @@
+{
+  "Alias": "adv",
+  "Description": "Advanced scaffold",
+  "Arguments": [
+    {
+      "Name": "Namespace",
+      "Description": "Namespace"
+    }
+  ],
+  "Options": []
+}

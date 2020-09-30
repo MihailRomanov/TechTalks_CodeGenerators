@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ModelSchema"
+    targetNamespace="http://kontur.ru/SampleModel"
+    elementFormDefault="qualified"
+    xmlns="http://kontur.ru/SampleModel"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="Entity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Properties" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Property" minOccurs="1" maxOccurs="unbounded" >
+                <xs:complexType>
+                  <xs:attribute name="Name" type="xs:string" use="required" />
+                  <xs:attribute name="Type" type="DataTypes" use="required" />
+                  <xs:attribute name="SqlName" type="xs:string" use="optional" />
+                  <xs:attribute name="IsNullable" type="xs:boolean" use="optional" default="false" />
+                  <xs:attribute name="IsRequired" type="xs:boolean" use="optional" default="false" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Name" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="DataTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="bool" />
+      <xs:enumeration value="datetime" />
+      <xs:enumeration value="decimal" />
+      <xs:enumeration value="double" />
+      <xs:enumeration value="float" />
+      <xs:enumeration value="int" />
+      <xs:enumeration value="long" />
+      <xs:enumeration value="short" />
+      <xs:enumeration value="string" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

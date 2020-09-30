@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="build\generators.props" />
+    <None Remove="Model\ModelSchema.xsd" />
+    <None Remove="Templates\CSharpGenerator.tt" />
+    <None Remove="Templates\CSharpTemplate.tt" />
+  </ItemGroup>
+
+    <ItemGroup>
+        <AvailableItemName Include="T4Runtime" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="build\generators.props">
+            <PackagePath>build</PackagePath>
+        </Content>
+        <Content Include="Model\ModelSchema.xsd">
+            <PackagePath>content</PackagePath>
+            <PackageCopyToOutput>true</PackageCopyToOutput>
+            <Pack>true</Pack>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.6.0" />
+      <PackageReference Include="System.CodeDom" Version="4.7.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <T4Runtime Include="Templates\CSharpTemplate.tt">
+        <Generator>MSBuild:Compile</Generator>
+      </T4Runtime>
+    </ItemGroup>
+
+
+    <Target Name="T4Runtime">
+        <Exec Condition="'@(T4Runtime)' != ''" WorkingDirectory="$(ProjectDir)" Command="dotnet tool run t4 %(T4Runtime.Identity) -c %(T4Runtime.FileName)  -o $(BaseIntermediateOutputPath)%(T4Runtime.Filename).g.cs" />
+        <ItemGroup Condition="'@(T4Runtime)' != ''">
+            <Compile Include="$(BaseIntermediateOutputPath)%(T4Runtime.Filename).g.cs" />
+        </ItemGroup>
+    </Target>
+
+    <PropertyGroup>
+        <CoreCompileDependsOn>$(CoreCompileDependsOn);T4Runtime</CoreCompileDependsOn>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>1.0.3</Version>
+    </PropertyGroup>
+
+
+</Project>

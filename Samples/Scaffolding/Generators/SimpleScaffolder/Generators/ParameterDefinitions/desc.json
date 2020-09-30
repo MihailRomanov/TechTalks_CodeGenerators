@@ -1,0 +1,17 @@
+{
+  "Alias": "simple",
+  "Description": "Simple scaffold",
+  "Arguments": [
+    {
+      "Name": "fileName",
+      "Description": "File name"
+    }
+  ],
+  "Options": [
+    {
+      "Name": "count",
+      "ShortName": "c",
+      "Description": "Files count"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+﻿{
+  "$schema": "https://json.schemastore.org/template",
+  "author": "MR",
+  "identity": "MR.T1",
+  "shortName": "t1",
+  "name": "T1 template",
+  "classifications": [ "Template" ],
+  "symbols": {
+    "Lastname": {
+      "type": "parameter",
+      "defaultValue": "111",
+      "replaces": "Теркин",
+      "datatype": "text"
+    }
+  }
+}

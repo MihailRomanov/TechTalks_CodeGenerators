@@ -1,0 +1,20 @@
+﻿@inherits Microsoft.VisualStudio.Web.CodeGeneration.Templating.RazorTemplateBase
+@{
+    AdvancedScaffolder.Model model = Model;
+}
+
+
+namespace @(model.Namespace)
+{
+@foreach (var type in model.Types)
+{
+    @:public class @type.Name {
+    foreach(var property in type.Properties)
+    {
+        @:public @property.Type @property.Name { get; set; }
+    }
+    @:}
+}
+}
+
+

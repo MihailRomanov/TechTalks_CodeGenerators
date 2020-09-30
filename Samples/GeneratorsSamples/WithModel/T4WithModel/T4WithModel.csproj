@@ -1,0 +1,73 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="Template.tt" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="nunit" Version="3.12.0" />
+        <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+        <PackageReference Include="System.CodeDom" Version="4.7.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Model\Model.csproj">
+            <Private>true</Private>
+        </ProjectReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <AvailableItemName Include="T4" />
+        <AvailableItemName Include="T4Runtime" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <T4Runtime Include="Template.tt">
+        <Generator>MSBuild:Compile</Generator>
+      </T4Runtime>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="TemplateDT.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>TemplateDT.tt</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="TemplateDT.tt">
+        <Generator>TextTemplatingFileGenerator</Generator>
+        <LastGenOutput>TemplateDT.cs</LastGenOutput>
+      </None>
+    </ItemGroup>
+
+    <Target Name="T4">
+        <Exec Condition="'@(T4)' != ''" WorkingDirectory="$(ProjectDir)" Command="dotnet tool run t4 %(T4.Identity) -o $(FullPath)%(T4.Filename).cs" />
+        <ItemGroup>
+            <Compile Update="%(T4.Filename).cs" />
+        </ItemGroup>
+    </Target>
+
+    <Target Name="T4Runtime">
+        <Exec Condition="'@(T4Runtime)' != ''" WorkingDirectory="$(ProjectDir)" Command="dotnet tool run t4 %(T4Runtime.Identity) -c %(T4Runtime.FileName)  -o $(BaseIntermediateOutputPath)%(T4Runtime.Filename).g.cs" />
+        <ItemGroup Condition="'@(T4Runtime)' != ''">
+            <Compile Include="$(BaseIntermediateOutputPath)%(T4Runtime.Filename).g.cs" />
+        </ItemGroup>
+    </Target>
+
+    <PropertyGroup>
+        <CoreCompileDependsOn>$(CoreCompileDependsOn);T4;T4Runtime</CoreCompileDependsOn>
+    </PropertyGroup>
+</Project>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <UsingTask TaskName="Generators.GeneratorTask" AssemblyFile="..\lib\netstandard2.0\Generators.dll" />
+    <Target Name="GenerateFromModel">
+        <Generators.GeneratorTask ModelFiles="@(Model)"
+                                  Namespace="$(RootNamespace)"
+                                  OutFolder="$(BaseIntermediateOutputPath)">
+            <Output TaskParameter="ResultFiles"
+                  ItemName="Compile" />
+        </Generators.GeneratorTask>
+    </Target>
+
+    <PropertyGroup>
+        <CoreCompileDependsOn>$(CoreCompileDependsOn);GenerateFromModel</CoreCompileDependsOn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AvailableItemName Include="Model" />
+    </ItemGroup>
+
+    <Target Name="CopySchema" BeforeTargets="PreBuildEvent">
+        <Copy SourceFiles="$(MSBuildThisFileDirectory)..\content\ModelSchema.xsd" DestinationFiles="$(ProjectDir)ModelSchema.xsd" SkipUnchangedFiles="true" Condition="!Exists('$(ProjectDir)ModelSchema.xsd')"></Copy>
+    </Target>
+
+</Project>
