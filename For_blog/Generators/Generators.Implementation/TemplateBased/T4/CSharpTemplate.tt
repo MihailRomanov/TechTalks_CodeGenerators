@@ -1,0 +1,21 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Generators.Implementation" #>
+<#@ import namespace="Generators.Common.EntitiesModel" #>
+<#@ output extension=".cs" #>
+<#@ parameter type="Generators.Common.EntitiesModel.Model" name="Model" #>
+
+namespace <#= Model.NamespaceName #>
+{
+<# foreach(Entity entity in Model.Entities) { #>
+	public class <#= entity.Name #>
+	{
+<# foreach(EntityProperty prop in entity.Properties ?? Enumerable.Empty<EntityProperty>()) { #>
+		public <#= prop.DataType.ToNetTypeString() #> <#= prop.Name #> { get; set; }
+<# } #>
+	}
+<# } #>
+}

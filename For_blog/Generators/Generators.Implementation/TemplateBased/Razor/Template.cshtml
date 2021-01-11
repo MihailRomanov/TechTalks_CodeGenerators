@@ -1,0 +1,18 @@
+﻿@using RazorLight
+@using entityModel = Generators.Common.EntitiesModel
+@using Generators.Implementation
+@inherits TemplatePage<entityModel.Model>
+
+namespace @Model.NamespaceName
+{
+@foreach (var entity in Model.Entities)
+{
+    @:public class @entity.Name
+    @:{
+    foreach (var prop in entity.Properties ?? Enumerable.Empty<entityModel.EntityProperty>())
+    {
+        @:public @prop.DataType.ToNetTypeString() @prop.Name { get; set; }
+    }
+    @:}
+}
+}

@@ -1,0 +1,11 @@
+﻿namespace {{ namespace_name }}
+{
+{{ for entity in entities }}
+	public class {{ entity.name }}
+	{
+{{~ for prop in entity.properties ~}}
+		public {{ prop.data_type | to_net_type }} {{ prop.name }} { get; set; }
+{{~ end ~}}
+	}
+{{ end }}
+}

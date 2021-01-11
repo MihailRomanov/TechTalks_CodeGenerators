@@ -5,13 +5,34 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="TemplateBased\Razor\Template.cshtml" />
+    <None Remove="TemplateBased\Scriban\Template.liquid" />
+    <None Remove="TemplateBased\T4\CSharpTemplate.tt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TemplateBased\Razor\Template.cshtml" />
+    <EmbeddedResource Include="TemplateBased\Scriban\Template.liquid" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis" Version="3.8.0" />
     <PackageReference Include="Microsoft.SqlServer.DacFx" Version="150.4897.1" />
+    <PackageReference Include="RazorLight" Version="2.0.0-rc.3" />
+    <PackageReference Include="Scriban" Version="3.3.2" />
     <PackageReference Include="System.CodeDom" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Generators.Common\Generators.Common.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <T4Runtime Include="TemplateBased\T4\CSharpTemplate.tt">
+      <Generator>MsBuild:Compile</Generator>
+    </T4Runtime>
+  </ItemGroup>
+
+  <Import Project="..\build.props\t4.props" />
 
 </Project>

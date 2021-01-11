@@ -1,0 +1,30 @@
+﻿<Project>
+
+    <ItemGroup>
+        <AvailableItemName Include="T4Runtime" />
+    </ItemGroup>
+
+
+    <Target Name="BuildT4Runtime">
+        <ItemGroup>
+            <T4ForProcessing Include="@(T4Runtime)">
+                <Namespace>$([MSBuild]::ValueOrDefault('%(T4Runtime.CustomToolNamespace)', '$(RootNamespace).%(T4Runtime.RelativeDir)').Replace('\', '.').Trim('.'))</Namespace>
+                <OutDir>$(BaseIntermediateOutputPath)%(T4Runtime.RelativeDir)</OutDir>
+                <OutFileName>$(BaseIntermediateOutputPath)%(T4Runtime.RelativeDir)%(T4Runtime.Filename).g.cs</OutFileName>
+            </T4ForProcessing>
+        </ItemGroup>
+        <PropertyGroup>
+            <NewDirs>@(T4ForProcessing -> '%(OutDir)')</NewDirs>
+        </PropertyGroup>
+        <MakeDir Directories="$(NewDirs)"></MakeDir>
+        <Exec Condition="'@(T4ForProcessing)' != ''" WorkingDirectory="$(ProjectDir)" Command="dotnet tool run t4 %(T4ForProcessing.Identity) -c %(T4ForProcessing.Namespace).%(T4ForProcessing.FileName)  -o %(T4ForProcessing.OutFileName)" />
+        <ItemGroup>
+            <Compile Include="%(T4ForProcessing.OutFileName)" />
+        </ItemGroup>
+    </Target>
+
+    <PropertyGroup>
+        <CoreCompileDependsOn>$(CoreCompileDependsOn);BuildT4Runtime</CoreCompileDependsOn>
+    </PropertyGroup>
+
+</Project>
