@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+    <TemplateData>
+        <Name>EntityGenerator Model</Name>
+        <Description>Model for entity generator</Description>
+        <Icon>Generators.VS.ModelTemplate.ico</Icon>
+        <TemplateID>a8a4e7cd-8df4-4934-be0a-96de80ab1e67</TemplateID>
+        <ProjectType>CSharp</ProjectType>
+        <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
+        <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+        <DefaultName>Model.json</DefaultName>
+    </TemplateData>
+    <TemplateContent>
+        <ProjectItem ReplaceParameters="true" CustomTool="EntityGenerator">Model.json</ProjectItem>
+    </TemplateContent>
+</VSTemplate>

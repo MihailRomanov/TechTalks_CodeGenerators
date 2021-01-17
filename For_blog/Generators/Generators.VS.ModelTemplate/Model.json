@@ -1,0 +1,11 @@
+[
+  {
+    "name": "$safeitemrootname$",
+    "properties": [
+      {
+        "name": "Property1",
+        "dataType": "String"
+      }
+    ]
+  }
+]
