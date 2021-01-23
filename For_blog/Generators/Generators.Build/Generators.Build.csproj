@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>1.0.0</Version>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Generators.Common\Generators.Common.csproj" />
+        <ProjectReference Include="..\Generators.Implementation\Generators.Implementation.csproj" />
+        <ProjectReference Include="..\Generators.ModelReaders\Generators.ModelReaders.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.8.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="build\Generators.Build.targets" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="build\Generators.Build.targets">
+            <PackagePath>build</PackagePath>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <_PackageFiles Include="$(OutputPath)Generators.Build.dll">
+            <PackagePath>build</PackagePath>
+        </_PackageFiles>
+        <_PackageFiles Include="$(OutputPath)Generators.Common.dll">
+            <PackagePath>build</PackagePath>
+        </_PackageFiles>
+        <_PackageFiles Include="$(OutputPath)Generators.Implementation.dll">
+            <PackagePath>build</PackagePath>
+        </_PackageFiles>
+        <_PackageFiles Include="$(OutputPath)Generators.ModelReaders.dll">
+            <PackagePath>build</PackagePath>
+        </_PackageFiles>
+        <_PackageFiles Include="$(OutputPath)Newtonsoft.Json.dll">
+            <PackagePath>build</PackagePath>
+        </_PackageFiles>
+        <_PackageFiles Include="$(OutputPath)AutoMapper.dll">
+            <PackagePath>build</PackagePath>
+        </_PackageFiles>
+    </ItemGroup>
+
+</Project>
