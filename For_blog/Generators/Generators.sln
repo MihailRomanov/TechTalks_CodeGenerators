@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generators.VS.ModelTemplate
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generators.Build", "Generators.Build\Generators.Build.csproj", "{57623E19-8D84-4E3E-800F-BBB51CEBB593}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generators.SourceGenerator", "Generators.SourceGenerator\Generators.SourceGenerator.csproj", "{C409D3C5-CF7F-414B-B419-49140F7B23AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{57623E19-8D84-4E3E-800F-BBB51CEBB593}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57623E19-8D84-4E3E-800F-BBB51CEBB593}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57623E19-8D84-4E3E-800F-BBB51CEBB593}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C409D3C5-CF7F-414B-B419-49140F7B23AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C409D3C5-CF7F-414B-B419-49140F7B23AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C409D3C5-CF7F-414B-B419-49140F7B23AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C409D3C5-CF7F-414B-B419-49140F7B23AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

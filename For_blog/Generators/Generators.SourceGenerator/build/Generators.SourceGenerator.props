@@ -1,0 +1,8 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <ItemGroup>
+        <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="CustomToolNamespace" />
+        <CompilerVisibleProperty Include="MSBuildProjectDirectory;RootNamespace" />
+    </ItemGroup>
+
+</Project>
