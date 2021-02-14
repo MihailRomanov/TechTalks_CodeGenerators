@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="ParameterDefinitions\*.json" Pack="true" PackagePath="\Generators\ParameterDefinitions\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration" Version="5.0.2" />
+    </ItemGroup>
+
+</Project>

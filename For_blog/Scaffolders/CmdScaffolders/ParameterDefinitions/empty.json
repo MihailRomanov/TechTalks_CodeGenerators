@@ -1,0 +1,6 @@
+{
+  "Alias": "EmptyCodeGenerator",
+  "Description": "It's very simple and doesn't do anything to a generator.",
+  "Arguments": [],
+  "Options": []
+}
