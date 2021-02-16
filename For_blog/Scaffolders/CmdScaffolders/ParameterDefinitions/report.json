@@ -1,0 +1,17 @@
+{
+  "Alias": "report",
+  "Description": "Report about current project",
+  "Arguments": [
+    {
+      "Name": "Name",
+      "Description": "Name of the report file - by default 'Report'"
+    }
+  ],
+  "Options": [
+    {
+      "Name": "addTimeStamp",
+      "ShortName": "t",
+      "Description": "Add time stamp to report name"
+    }
+  ]
+}

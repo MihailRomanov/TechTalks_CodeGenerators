@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CmdScaffolders
+namespace CmdScaffolders.Empty
 {
     public class EmptyCodeGenerator
     {
