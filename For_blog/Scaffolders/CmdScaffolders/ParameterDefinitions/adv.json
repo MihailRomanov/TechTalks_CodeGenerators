@@ -1,0 +1,22 @@
+{
+  "Alias": "adv",
+  "Description": "'Advanced' generator",
+  "Arguments": [
+    {
+      "Name": "Namespace",
+      "Description": "Namespace for generated code"
+    }
+  ],
+  "Options": [
+    {
+      "Name": "typeFilter",
+      "ShortName": "tf",
+      "Description": "Regex for filter types for generator"
+    },
+    {
+      "Name": "outputFile",
+      "ShortName": "o",
+      "Description": "Result file Name (default: Generated.cs)"
+    }
+  ]
+}

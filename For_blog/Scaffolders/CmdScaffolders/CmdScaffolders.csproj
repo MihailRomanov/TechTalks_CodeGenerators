@@ -7,6 +7,7 @@
 
     <ItemGroup>
         <None Include="ParameterDefinitions\*.json" Pack="true" PackagePath="\Generators\ParameterDefinitions\" />
+        <None Include="Templates\**\*.*" Pack="true" PackagePath="\Templates\%(RecursiveDir)\%(Filename)%(Extension)" />
     </ItemGroup>
 
     <ItemGroup>
