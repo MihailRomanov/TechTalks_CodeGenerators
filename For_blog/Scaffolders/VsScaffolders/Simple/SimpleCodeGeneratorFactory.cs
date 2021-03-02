@@ -8,7 +8,7 @@ namespace VsScaffolders.Simple
     [Export(typeof(CodeGeneratorFactory))]
     public class SimpleCodeGeneratorFactory : CodeGeneratorFactory
     {
-        public SimpleCodeGeneratorFactory(ICodeTypeService codeTypeService) :
+        public SimpleCodeGeneratorFactory() :
             base(new CodeGeneratorInformation(
                 "Simple Code Generator",
                 "Generator",
