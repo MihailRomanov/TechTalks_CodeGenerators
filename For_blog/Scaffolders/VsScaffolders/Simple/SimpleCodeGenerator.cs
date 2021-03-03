@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNet.Scaffolding;
 using Microsoft.VisualStudio.PlatformUI;
-using System.Windows;
 
 namespace VsScaffolders.Simple
 {
     public class SimpleCodeGenerator : CodeGenerator
     {
+        private string typeName;
+
         public SimpleCodeGenerator(CodeGenerationContext context, CodeGeneratorInformation information)
             : base(context, information)
         {
@@ -13,15 +14,12 @@ namespace VsScaffolders.Simple
 
         public override void GenerateCode()
         {
-            MessageBox.Show("Generate!!!");
+            MessageDialog.Show("Typed type name", typeName, MessageDialogCommandSet.Ok);
         }
 
         public override bool ShowUIAndValidate()
         {
-            var dialog = new Dialog();
-            var result = dialog.ShowDialog();
-
-            return result ?? false;
+            return TextInputDialog.Show("Type name", "Full type name", "System.String", out typeName);
         }
     }
 }
