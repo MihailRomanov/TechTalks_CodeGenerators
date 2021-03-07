@@ -33,7 +33,7 @@ namespace VsScaffolders.Simple
             var dialog = new SelectCodeModelDialog();
             dialog.DataContext = ViewModel;
 
-            return dialog.ShowDialog() ?? false;
+            return dialog.ShowModal() ?? false;
         }
     }
 }
