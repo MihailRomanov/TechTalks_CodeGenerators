@@ -2,6 +2,7 @@
 
 namespace VsScaffolders.Model
 {
+    [Serializable]
     public class CodePropertyModel
     {
         public string Name { get; }
