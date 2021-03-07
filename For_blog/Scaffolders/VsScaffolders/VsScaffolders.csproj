@@ -48,6 +48,7 @@
     <Compile Include="DoNothing\DoNothingCodeGeneratorFactory.cs" />
     <Compile Include="Model\CodePropertyModel.cs" />
     <Compile Include="Model\CodeTypeModel.cs" />
+    <Compile Include="Model\ModelUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\SelectCodeModelDialog.xaml.cs">
       <DependentUpon>SelectCodeModelDialog.xaml</DependentUpon>
