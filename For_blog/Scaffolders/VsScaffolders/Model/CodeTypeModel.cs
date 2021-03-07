@@ -1,5 +1,8 @@
-﻿namespace VsScaffolders.Model
+﻿using System;
+
+namespace VsScaffolders.Model
 {
+    [Serializable]
     public class CodeTypeModel
     {
         public string Name { get; }
