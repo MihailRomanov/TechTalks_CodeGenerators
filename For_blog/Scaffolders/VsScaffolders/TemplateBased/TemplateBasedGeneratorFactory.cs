@@ -5,7 +5,7 @@ using Microsoft.WebTools.Scaffolding.Core.Scaffolders;
 using System;
 using System.ComponentModel.Composition;
 
-namespace VsScaffolders.Simple
+namespace VsScaffolders.TemplateBased
 {
     [Export(typeof(CodeGeneratorFactory))]
     [Export("NetCoreScaffolderFactory", typeof(CodeGeneratorFactory))]
