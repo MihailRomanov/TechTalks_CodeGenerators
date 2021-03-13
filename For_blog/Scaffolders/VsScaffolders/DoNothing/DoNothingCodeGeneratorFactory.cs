@@ -9,7 +9,7 @@ namespace VsScaffolders.DoNothing
 {
     [Export(typeof(LegacyCodeGeneratorFactory))]
     [Export("NetCoreScaffolderFactory", typeof(LegacyCodeGeneratorFactory))]
-    public class DoNothingCodeGeneratorFactory : LegacyCodeGeneratorFactory
+    public class DoNothingCodeGeneratorFactory : LegacyCodeGeneratorFactory, IConfigurableScaffolderFactory
     {
         public DoNothingCodeGeneratorFactory() :
             base(new CodeGeneratorInformation(
