@@ -7,9 +7,9 @@ using System.ComponentModel.Composition;
 
 namespace VsScaffolders.TemplateBased
 {
-    [Export(typeof(CodeGeneratorFactory))]
-    [Export("NetCoreScaffolderFactory", typeof(CodeGeneratorFactory))]
-    public class TemplateBasedGeneratorFactory : CodeGeneratorFactory, IConfigurableScaffolderFactory
+    [Export(typeof(LegacyCodeGeneratorFactory))]
+    [Export("NetCoreScaffolderFactory", typeof(LegacyCodeGeneratorFactory))]
+    public class TemplateBasedGeneratorFactory : LegacyCodeGeneratorFactory, IConfigurableScaffolderFactory
     {
         public TemplateBasedGeneratorFactory() :
             base(new CodeGeneratorInformation(
@@ -20,7 +20,8 @@ namespace VsScaffolders.TemplateBased
                 nameof(TemplateBasedGenerator),
                 new ImageMoniker { Guid = new Guid("0808e3b1-36e0-4801-b042-faa5e505a64e"), Id = 0 },
                 null,
-                new[] { "SKB Kontur/Scaffolders/Simple" }))
+                new[] { "SKB Kontur/Scaffolders/Simple" },
+                true))
         {
         }
 
