@@ -5,8 +5,8 @@ using System.ComponentModel.Composition;
 
 namespace VsScaffolders.Simple
 {
-    [Export(typeof(CodeGeneratorFactory))]
-    public class TemplateBasedGeneratorFactory : CodeGeneratorFactory
+    [Export(typeof(LegacyCodeGeneratorFactory))]
+    public class TemplateBasedGeneratorFactory : LegacyCodeGeneratorFactory
     {
         public TemplateBasedGeneratorFactory() :
             base(new CodeGeneratorInformation(
@@ -17,7 +17,8 @@ namespace VsScaffolders.Simple
                 nameof(TemplateBasedGenerator),
                 new ImageMoniker { Guid = new Guid("0808e3b1-36e0-4801-b042-faa5e505a64e"), Id = 0 },
                 null,
-                new[] { "SKB Kontur/Scaffolders/Simple" }))
+                new[] { "SKB Kontur/Scaffolders/Simple" },
+                true))
         {
         }
 
