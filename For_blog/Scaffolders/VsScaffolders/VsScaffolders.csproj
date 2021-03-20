@@ -50,8 +50,12 @@
     <Compile Include="CoreCall\CoreCallCodeGenerator.cs" />
     <Compile Include="CoreCall\CoreCallCodeGeneratorFactory.cs" />
     <Compile Include="CoreCall\WrappingGeneratorFactory.cs" />
+    <Compile Include="CoreInvoke\CoreInvokeCodeGenerator.cs" />
+    <Compile Include="CoreInvoke\CoreInvokeCodeGeneratorFactory.cs" />
+    <Compile Include="CoreInvoke\ProjectContextBuilder.cs" />
     <Compile Include="DoNothing\DoNothingCodeGenerator.cs" />
     <Compile Include="DoNothing\DoNothingCodeGeneratorFactory.cs" />
+    <Compile Include="Helpers\VsHierarchyHelper.cs" />
     <Compile Include="Model\CodePropertyModel.cs" />
     <Compile Include="Model\CodeTypeModel.cs" />
     <Compile Include="Model\ModelUtils.cs" />
@@ -90,6 +94,9 @@
     <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="16.9.1050">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="NuGet.VisualStudio">
+      <Version>5.9.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
