@@ -3,8 +3,10 @@ using Microsoft.CodeAnalysis;
 using Microsoft.VisualStudio.Imaging.Interop;
 using Microsoft.VisualStudio.LanguageServices;
 using Microsoft.WebTools.Scaffolding.Core;
+using Microsoft.WebTools.Scaffolding.Core.CommandLine;
 using Microsoft.WebTools.Scaffolding.Core.FactoryConfig;
 using Microsoft.WebTools.Scaffolding.Core.Scaffolders;
+using Microsoft.WebTools.Scaffolding.Shared.ProjectModel;
 using NuGet.VisualStudio;
 using System;
 using System.ComponentModel.Composition;
@@ -38,13 +40,24 @@ namespace VsScaffolders.CoreInvoke
         [Import]
         private IVsPackageInstallerServices VsPackageInstallerServices { get; set; }
 
+        [Import]
+        private ICommandLineInvoker CommandLineInvoker { get; set; }
+
+        [Import]
+        private IFileSystemChangeExecutor FileSystemChangeExecutor { get; set; }
+
         public override ICodeGenerator CreateInstance(CodeGenerationContext context)
         {
             var projectContextBuilder = new ProjectContextBuilder(
                 MsBuildProjectPropertyService, context.ActiveProject, context.ServiceProvider, Workspace,
                 VsPackageInstallerServices);
 
-            var p = projectContextBuilder.BuildProjectContext();
+            var fileSystemService = (IFileSystemService)context.ServiceProvider.GetService(typeof(IFileSystemService));
+
+            context.Items.AddProperty(typeof(ICommandLineInvoker), CommandLineInvoker);
+            context.Items.AddProperty(typeof(IFileSystemChangeExecutor), FileSystemChangeExecutor);
+            context.Items.AddProperty(typeof(IMvcCoreCodeGenerationActionService), new MvcCoreCodeGenerationActionService(fileSystemService));
+            context.Items.AddProperty(typeof(IProjectContextBuilder), projectContextBuilder);
 
             return new CoreInvokeCodeGenerator(context, Information);
         }

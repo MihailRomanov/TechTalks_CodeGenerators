@@ -40,6 +40,8 @@ namespace VsScaffolders.CoreInvoke
             var targetPath = msBuildProjectPropertyService.GetPropertyValue(vsHierarchy, "TargetPath", configuration);
             var outputType = msBuildProjectPropertyService.GetPropertyValue(vsHierarchy, "OutputType", configuration);
             var targetFramework = msBuildProjectPropertyService.GetPropertyValue(vsHierarchy, "TargetFramework", configuration);
+            var targetFrameworkMoniker = project.Properties.Item("TargetFrameworkMoniker").Value.ToString();
+            var targetPathDirectory = Path.GetDirectoryName(targetPath);
 
             context.AssemblyFullPath = targetPath;
             context.AssemblyName = Path.GetFileName(targetPath);
@@ -47,7 +49,8 @@ namespace VsScaffolders.CoreInvoke
             context.CompilationItems = GetCompilationItems();
             context.Config = targetPath + ".config";
             context.Configuration = configuration;
-            context.DepsFile = msBuildProjectPropertyService.GetPropertyValue(vsHierarchy, "ProjectDepsFileName", configuration);
+            context.DepsFile = Path.Combine(targetPathDirectory,
+                msBuildProjectPropertyService.GetPropertyValue(vsHierarchy, "ProjectDepsFileName", configuration));
             context.EmbededItems = Enumerable.Empty<string>();
             context.IsClassLibrary = "Library".Equals(outputType, StringComparison.OrdinalIgnoreCase);
             context.PackageDependencies = GetPackageDependencies(targetFramework);
@@ -58,9 +61,14 @@ namespace VsScaffolders.CoreInvoke
             context.ProjectReferenceInformation = GetProjectReferenceInformation();
             context.ProjectReferences = context.ProjectReferenceInformation.Select(pi => pi.FullPath).ToList();
             context.RootNamespace = msBuildProjectPropertyService.GetPropertyValue(vsHierarchy, "RootNamespace", configuration);
-            context.RuntimeConfig = msBuildProjectPropertyService.GetPropertyValue(vsHierarchy, "ProjectRuntimeConfigFileName", configuration);
+            context.RuntimeConfig = Path.Combine(targetPathDirectory,
+                msBuildProjectPropertyService.GetPropertyValue(vsHierarchy, "ProjectRuntimeConfigFileName", configuration));
             context.TargetDirectory = msBuildProjectPropertyService.GetPropertyValue(vsHierarchy, "TargetDir", configuration);
-            context.TargetFramework = targetFramework;
+            context.TargetFramework = targetFrameworkMoniker;
+
+
+            var p1 = context.PackageDependencies.Single(p => p.Name == "CmdScaffolders" && p.Version == "1.0.0");
+            p1.AddDependency(new Dependency("Microsoft.VisualStudio.Web.CodeGeneration", ""));
 
             return context;
         }
@@ -109,7 +117,9 @@ namespace VsScaffolders.CoreInvoke
         private IEnumerable<ResolvedReference> GetReferencedAssemblies()
         {
             var vsProject = (VSLangProj.VSProject)project.Object;
-            return vsProject.References.OfType<VSLangProj.Reference>().Select(r => new ResolvedReference(r.Name, r.Path)).ToList();
+            return vsProject.References.OfType<VSLangProj.Reference>()
+                .Select(r => new ResolvedReference(Path.GetFileName(r.Path), r.Path))
+                .ToList();
         }
 
         public IProjectContextBuilder ForTargetFramework(string targetFramework)
