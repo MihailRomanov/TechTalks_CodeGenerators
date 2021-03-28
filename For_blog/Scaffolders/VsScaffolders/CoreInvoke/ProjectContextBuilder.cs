@@ -20,8 +20,11 @@ namespace VsScaffolders.CoreInvoke
         private readonly Workspace workspace;
         private readonly IVsPackageInstallerServices vsPackageInstaller;
 
-        public ProjectContextBuilder(IMsBuildProjectPropertyService msBuildProjectPropertyService,
-            EnvDTE.Project project, IServiceProvider serviceProvider, Workspace workspace,
+        public ProjectContextBuilder(
+            IMsBuildProjectPropertyService msBuildProjectPropertyService,
+            EnvDTE.Project project,
+            IServiceProvider serviceProvider,
+            Workspace workspace,
             IVsPackageInstallerServices vsPackageInstaller)
         {
             this.msBuildProjectPropertyService = msBuildProjectPropertyService;

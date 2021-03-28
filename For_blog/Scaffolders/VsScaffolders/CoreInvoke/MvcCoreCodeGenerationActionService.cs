@@ -16,14 +16,16 @@ namespace VsScaffolders.CoreInvoke
             this.fileSystemService = fileSystemService;
         }
 
-        public Task<bool> AddFileAsync(UnconfiguredProject project, string projectRelativePath, string sourceFilePath, bool skipIfExists, bool addUTF8BOM = true)
+        public Task<bool> AddFileAsync(UnconfiguredProject project, string projectRelativePath,
+            string sourceFilePath, bool skipIfExists, bool addUTF8BOM = true)
         {
             var text = fileSystemService.ReadAllText(sourceFilePath);
 
             return AddFileFromTextAsync(project, projectRelativePath, text, skipIfExists, addUTF8BOM);
         }
 
-        public async Task<bool> AddFileFromTextAsync(UnconfiguredProject project, string projectRelativePath, string sourceText, bool skipIfExists, bool addUTF8BOM = true)
+        public async Task<bool> AddFileFromTextAsync(UnconfiguredProject project, string projectRelativePath,
+            string sourceText, bool skipIfExists, bool addUTF8BOM = true)
         {
             var projectRootDirectory = Path.GetDirectoryName(project.FullPath);
             var fullFilePath = Path.Combine(projectRootDirectory, projectRelativePath);

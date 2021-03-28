@@ -44,14 +44,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CoreCall\BaseCodeGeneratorInformationProvider.cs" />
-    <Compile Include="CoreCall\BaseCoreCallCodeGenerator.cs" />
-    <Compile Include="CoreCall\BaseCoreCallCodeGeneratorFactory.cs" />
-    <Compile Include="CoreCall\CoreCallCodeGenerator.cs" />
-    <Compile Include="CoreCall\CoreCallCodeGeneratorFactory.cs" />
-    <Compile Include="CoreCall\WrappingGeneratorFactory.cs" />
+    <Compile Include="CoreInvoke\BaseCoreInvokeCodeGenerator.cs" />
+    <Compile Include="CoreInvoke\BaseCoreInvokeCodeGeneratorFactory.cs" />
+    <Compile Include="CoreInvoke\BaseCoreInvokeCodeGeneratorFactoryOnCustomServices.cs" />
     <Compile Include="CoreInvoke\CoreInvokeCodeGenerator.cs" />
-    <Compile Include="CoreInvoke\CoreInvokeCodeGeneratorFactory.cs" />
+    <Compile Include="CoreInvoke\BaseCoreInvokeCodeGeneratorFactoryOnStandardServices.cs" />
+    <Compile Include="CoreInvoke\CoreInvokeCodeGeneratorFactoryOnCustomServices.cs" />
+    <Compile Include="CoreInvoke\CoreInvokeCodeGeneratorFactoryOnStandardServices.cs" />
     <Compile Include="CoreInvoke\MvcCoreCodeGenerationActionService.cs" />
     <Compile Include="CoreInvoke\ProjectContextBuilder.cs" />
     <Compile Include="DoNothing\DoNothingCodeGenerator.cs" />
@@ -105,6 +104,9 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.AspNet.Scaffolding.12.0, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.ProjectSystem.Managed">
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\Extensions\Microsoft\ManagedProjectSystem\Microsoft.VisualStudio.ProjectSystem.Managed.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.Web.CodeGeneration.Contracts, Version=1.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\Extensions\Microsoft\Web Tools\Scaffolding\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll</HintPath>
@@ -116,6 +118,9 @@
     <Reference Include="Microsoft.WebTools.Scaffolding.Shared, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\Extensions\Microsoft\Web Tools\Scaffolding\Microsoft.WebTools.Scaffolding.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WebTools.Shared.CPS.VS">
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\Extensions\Microsoft\Web Tools Shared\Microsoft.WebTools.Shared.CPS.VS.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WebTools.Shared.VS">
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\Extensions\Microsoft\Web Tools Shared\Microsoft.WebTools.Shared.VS.dll</HintPath>
