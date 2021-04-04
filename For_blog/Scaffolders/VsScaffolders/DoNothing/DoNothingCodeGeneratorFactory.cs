@@ -1,12 +1,15 @@
 ﻿using Microsoft.AspNet.Scaffolding;
 using Microsoft.VisualStudio.Imaging.Interop;
+using Microsoft.WebTools.Scaffolding.Core.FactoryConfig;
+using Microsoft.WebTools.Scaffolding.Core.Scaffolders;
 using System;
 using System.ComponentModel.Composition;
 
 namespace VsScaffolders.DoNothing
 {
     [Export(typeof(LegacyCodeGeneratorFactory))]
-    public class DoNothingCodeGeneratorFactory : LegacyCodeGeneratorFactory
+    [Export("NetCoreScaffolderFactory", typeof(LegacyCodeGeneratorFactory))]
+    public class DoNothingCodeGeneratorFactory : LegacyCodeGeneratorFactory, IConfigurableScaffolderFactory
     {
         public DoNothingCodeGeneratorFactory() :
             base(new CodeGeneratorInformation(
@@ -25,6 +28,21 @@ namespace VsScaffolders.DoNothing
         public override ICodeGenerator CreateInstance(CodeGenerationContext context)
         {
             return new DoNothingCodeGenerator(context, Information);
+        }
+
+        public bool IsEvaluationContextInitialized(IScaffolderFactoryConfigEvaluationContext factoryEvaluationContext)
+        {
+            return true;
+        }
+
+        public bool IsSupported(IScaffolderFactoryConfigEvaluationContext facotryEvaluationContext)
+        {
+            return true;
+        }
+
+        public IScaffolderFactoryConfigEvaluationContext SetupConfigEvaluationContext(CodeGenerationContext context)
+        {
+            return null;
         }
     }
 }

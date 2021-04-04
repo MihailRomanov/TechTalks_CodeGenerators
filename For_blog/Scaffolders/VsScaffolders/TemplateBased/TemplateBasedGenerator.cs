@@ -5,7 +5,7 @@ using System.IO;
 using VsScaffolders.Model;
 using VsScaffolders.UI;
 
-namespace VsScaffolders.Simple
+namespace VsScaffolders.TemplateBased
 {
     public class TemplateBasedGenerator : CodeGenerator
     {
@@ -50,7 +50,7 @@ namespace VsScaffolders.Simple
         {
             get
             {
-                var baseTemplatePath = Path.Combine(Path.GetDirectoryName(this.GetType().Assembly.Location),
+                var baseTemplatePath = Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location),
                     "Templates", TemplatesFolderName);
                 var projectTemplatePath = Path.Combine(Context.ActiveProject.GetFullPath(),
                     "Templates", TemplatesFolderName);
