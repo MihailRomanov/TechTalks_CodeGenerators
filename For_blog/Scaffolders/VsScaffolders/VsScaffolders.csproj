@@ -122,9 +122,6 @@
     <Reference Include="Microsoft.WebTools.Shared.CPS.VS">
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\Extensions\Microsoft\Web Tools Shared\Microsoft.WebTools.Shared.CPS.VS.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WebTools.Shared.VS">
-      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\Extensions\Microsoft\Web Tools Shared\Microsoft.WebTools.Shared.VS.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
